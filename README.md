@@ -1,2 +1,2 @@
 # 网易云音乐抓包
-just a test
+EncryptTools破解网易云音乐抓取评论数，参考http://www.jianshu.com/p/07ebbb142c73
