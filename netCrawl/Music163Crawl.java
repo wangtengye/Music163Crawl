@@ -1,14 +1,14 @@
 package netCrawl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 class crawlUtils {
 	public static Document getDocument(String href) {
@@ -71,7 +71,7 @@ class CrawlPlayListsThread extends Thread {
 	@Override
 	public void run() {
 		for (int i = begin; i < end; i++) {
-			String playListsHref = "http://music.163.com/discover/playlist/?order=hot&cat=È«²¿&limit=35&offset=" + i * 35;
+			String playListsHref = "http://music.163.com/discover/playlist/?order=hot&cat=È«ï¿½ï¿½&limit=35&offset=" + i * 35;
 			Document document = crawlUtils.getDocument(playListsHref);
 			Elements elements = document.select("ul#m-pl-container li");
 			for (Element element : elements) {
@@ -170,6 +170,8 @@ class Song {
 		return finish;
 	}
 
+
+
 	public Song(String href, String name) {
 		super();
 		this.href = href;
@@ -262,7 +264,7 @@ class CrawlThread extends Thread {
 				System.out.println("comm:"+song.getHref());
 			}
 			if (song.getNumberOfComments() > 10000) {
-				System.out.println("¸èÇúÃû×Ö£º" + song.getName() + "    ¸èÊÖ£º" + song.getSinger() + "    ÆÀÂÛ£º"
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½" + song.getName() + "    ï¿½ï¿½ï¿½Ö£ï¿½" + song.getSinger() + "    ï¿½ï¿½ï¿½Û£ï¿½"
 						+ song.getNumberOfComments());
 			}
 		}
@@ -272,15 +274,15 @@ class CrawlThread extends Thread {
 
 public class Music163Crawl {
 	public static void main(String[] args) throws Exception {
-		System.out.println("µÚÒ»½×¶Î£º");
+		System.out.println("ï¿½ï¿½Ò»ï¿½×¶Î£ï¿½");
 		PlayLists.crawlPlayLists();
 		while (!PlayLists.isFinish())
 			Thread.sleep(1000);
-		System.out.println("µÚ¶þ½×¶Î£º");
+		System.out.println("ï¿½Ú¶ï¿½ï¿½×¶Î£ï¿½");
 		PlayList.crawlSongs();
 		while (!PlayList.isFinish())
 			Thread.sleep(1000);
-		System.out.println("µÚÈý½×¶Î£º");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½×¶Î£ï¿½");
 		System.out.println(PlayList.getSongs().size());
 		Song.crawl();
 
